@@ -21,9 +21,7 @@ package com.example.smd_po_module.ui.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -33,17 +31,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smd_po_module.Api;
-import com.example.smd_po_module.Hero;
 import com.example.smd_po_module.Landing_Student;
 import com.example.smd_po_module.MainActivity;
 import com.example.smd_po_module.PlacementOfficer;
-import com.example.smd_po_module.ValidateFilter;
 import com.example.smd_po_module.admin;
-import com.example.smd_po_module.retrofit;
 import com.example.smd_po_module.MainActivityAdmin;
 import com.example.smd_po_module.R;
-import com.example.smd_po_module.repository.ScreenTimeRepo;
 import com.example.smd_po_module.student;
 import com.example.smd_po_module.studentsignup;
 import com.google.firebase.database.DataSnapshot;
@@ -54,13 +47,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PO_login extends AppCompatActivity implements LoginView {
 
@@ -87,51 +74,8 @@ public class PO_login extends AppCompatActivity implements LoginView {
                                                                 startActivity(i);
                                                          }
                                                      });
-        getData();
         findViewById(R.id.login).setOnClickListener(v -> validateCredentials());
         presenter = new LoginPresenter(this, new LoginInteractor());
-    }
-
-    private void getData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
-                .build();
-
-
-
-        Api api = retrofit.create(Api.class);
-
-        Call<List<Hero>> call = api.getData();
-
-        call.enqueue(new Callback<List<Hero>>() {
-            @Override
-            public void onResponse(Call<List<Hero>> call, Response<List<Hero>> response) {
-                List<Hero> heroList = response.body();
-                System.out.println("RESPONSE "+response.body());
-
-                //Creating an String array for the ListView
-                String[] heroes = new String[heroList.size()];
-
-                //looping through all the heroes and inserting the names inside the string array
-                for (int i = 0; i < heroList.size(); i++) {
-                    heroes[i] = heroList.get(i).getStatus_code();
-
-
-                    ScreenTimeRepo screenTimeRepo = new ScreenTimeRepo(PO_login.this);
-                    String status_code= heroList.get(i).getStatus_code();
-                    String version = heroList.get(i).getVersion();
-                    String app_meta_data = heroList.get(i).getApp_meta_name();
-                    screenTimeRepo.insertTask(status_code,version,app_meta_data);
-                    screenTimeRepo.getTask(status_code);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Hero>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Failedd", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

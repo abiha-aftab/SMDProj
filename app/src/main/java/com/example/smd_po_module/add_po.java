@@ -10,14 +10,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smd_po_module.imageutils.ImageLoader;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,10 +25,7 @@ public class add_po extends AppCompatActivity {
     AlertDialog.Builder builder;
     DatabaseReference mDatabase;
     String id;
-    ImageView imgView;
-    ImageLoader imgLoader;
     int a=1;
-    private String strURL = "http://technotalkative.com/android.jpg";
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -116,10 +111,6 @@ public class add_po extends AppCompatActivity {
             editText3.setText(myString8);
             editText2.setText(myString7);
         }
-         imgView = (ImageView) findViewById(R.id.imageView2);
-        imgLoader = new ImageLoader(this);
-
-        imgLoader.DisplayImage(strURL, imgView);
     }
 
 
