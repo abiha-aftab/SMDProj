@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/profile"
+            android:contentDescription="@string/logo"
             android:layout_width="128dp"
             android:layout_height="150dp"
             android:layout_gravity="center"

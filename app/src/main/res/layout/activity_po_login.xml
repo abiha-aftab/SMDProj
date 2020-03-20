@@ -12,6 +12,7 @@
     tools:context=".ui.login.PO_login">
     <ImageView
         android:id="@+id/profile"
+        android:contentDescription="@string/logo"
         android:layout_width="128dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -22,6 +23,8 @@
 
     <EditText
         android:id="@+id/username"
+        android:autofillHints="username"
+        android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -37,6 +40,7 @@
 
     <EditText
         android:id="@+id/password"
+        android:autofillHints="password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
