@@ -67,7 +67,6 @@ public class adapter_job extends RecyclerView.Adapter<adapter_job.MyHolder>{
         }
         public void onClick(View v) {
             int viewId = v.getId();
-            System.out.println("global"+Global.intent);
             if (Global.intent == 'J'&& Global.intent1!='T' && Global.intent1!='y') {
                 int pos = getAdapterPosition();
                 if (pos == 0) {

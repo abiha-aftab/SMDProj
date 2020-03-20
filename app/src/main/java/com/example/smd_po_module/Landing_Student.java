@@ -21,9 +21,7 @@ public class Landing_Student extends AppCompatActivity {
         setContentView(R.layout.activity_landing__student);
 
 
-        String id = "0000";
-               id= getIntent().getStringExtra("id");
-        System.out.println("id in intent "+id);
+        String id = getIntent().getStringExtra("id");
         ImageView profileImage = findViewById(R.id.profile);
         Picasso.get().load(R.drawable.po_profile).into(profileImage);
         TextView po_name = findViewById(R.id.po_name);
@@ -32,7 +30,6 @@ public class Landing_Student extends AppCompatActivity {
         String name= pref.getString("username", null);
         if((id)==null) {
             id = pref.getString(name, null);
-            System.out.println("id in SP "+id);
         }
         po_name.setText(name);
         TextView po_role = findViewById(R.id.po_role);
@@ -55,7 +52,6 @@ public class Landing_Student extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(getApplicationContext(), student_update .class);
-                //System.out.println("IDDD"+id);
                 i.putExtra("id", finalId);
                 startActivity(i);
             }

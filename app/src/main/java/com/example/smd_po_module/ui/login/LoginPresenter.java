@@ -47,7 +47,6 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener {
     }
 
     public void validateCredentials(String username, String password) {
-        System.out.println("vaildate2");
         if (loginView != null) {
             loginView.showProgress();
         }

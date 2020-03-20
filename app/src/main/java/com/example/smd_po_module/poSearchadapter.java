@@ -38,7 +38,6 @@ public class poSearchadapter extends RecyclerView.Adapter<poSearchadapter.MyView
     }
     @Override
     public int getItemCount(){
-       // System.out.print(getdata.size());
         return data.size();
     }
 

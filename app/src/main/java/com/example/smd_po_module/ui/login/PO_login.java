@@ -19,13 +19,11 @@
 package com.example.smd_po_module.ui.login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -41,7 +39,6 @@ import com.example.smd_po_module.student;
 import com.example.smd_po_module.studentsignup;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -66,14 +63,8 @@ public class PO_login extends AppCompatActivity implements LoginView {
         progressBar = findViewById(R.id.progress);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
-                                                         @Override
-                                                         public void onClick(View v) {
-
-                                                             Intent i= new Intent(getApplicationContext(), studentsignup.class);
-                                                                startActivity(i);
-                                                         }
-                                                     });
+        findViewById(R.id.signup).setOnClickListener(
+                v -> startActivity(new Intent(getApplicationContext(), studentsignup.class)));
         findViewById(R.id.login).setOnClickListener(v -> validateCredentials());
         presenter = new LoginPresenter(this, new LoginInteractor());
     }
@@ -106,145 +97,64 @@ public class PO_login extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigateToHome() {
+        hideProgress();
+        RadioGroup rg = findViewById(R.id.rg);
+        int roleId = rg.getCheckedRadioButtonId();
+        if (roleId == -1) {
+            Toast.makeText(getApplicationContext(), "Choose a role", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String enteredName = username.getText().toString().trim();
+        getApplicationContext().getSharedPreferences("MyPref", 0)
+                .edit().putString("username", enteredName).apply();
 
-
-        RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
-        RadioButton radiob;
-        String module = null;
-        final String value =
-                ((RadioButton) findViewById(rg.getCheckedRadioButtonId()))
-                        .getText().toString();
-        int selectedId = rg.getCheckedRadioButtonId();
-
-        // find the radiobutton by returned id
-        radiob = (RadioButton) findViewById(selectedId);
-        module = radiob.getText().toString();
-
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
-        SharedPreferences.Editor editor = pref.edit();
-        EditText e = findViewById(R.id.username);
-        editor.putString("username", e.getText().toString()); // Storing string
-        /*rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-               module[0] =value;
-            }
-        });*/
-        ;
-        editor.commit();
-        if (module.equals("As Student")) {
-
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("student");
-
-            Query query = databaseReference.orderByChild("name").equalTo(username.getText().toString().trim());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // dataSnapshot is the "issue" node with all children with id 0
-
-                        for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            // do something with the individual "issues"
-                            student p = user.getValue(student.class);
-
-                            if (p.getPassword().equals(password.getText().toString().trim())) {
-
-
-                                System.out.println("student");
-                                Intent i = new Intent(getApplicationContext(), Landing_Student.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Password is wrong", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
-                }
-            });
-
-
-        } else if (module.equals("As PO")) {
-
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PlacementOfficer");
-
-            Query query = databaseReference.orderByChild("username").equalTo(username.getText().toString().trim());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // dataSnapshot is the "issue" node with all children with id 0
-
-                        for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            // do something with the individual "issues"
-                            PlacementOfficer p = user.getValue(PlacementOfficer.class);
-
-                            if (p.getPassword().equals(password.getText().toString().trim())) {
-
-
-                                System.out.println("PO");
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Password is wrong", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
-                }
-            });
-
-        } else if (module.equals("As Admin")) {
-
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("admin");
-
-            Query query = databaseReference.orderByChild("username").equalTo(username.getText().toString().trim());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // dataSnapshot is the "issue" node with all children with id 0
-
-                        for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            // do something with the individual "issues"
-                            admin p = user.getValue(admin.class);
-                            System.out.println(p.getPassword());
-
-                            if (p.getPassword().equals(password.getText().toString().trim())) {
-                                System.out.println("admin");
-                                Intent i = new Intent(getApplicationContext(), MainActivityAdmin.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Password is wrong", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
-                }
-            });
-
+        if (roleId == R.id.radioButton) {
+            signIn("student", "name", enteredName, Landing_Student.class,
+                    user -> user.getValue(student.class).getPassword());
+        } else if (roleId == R.id.radioButton3) {
+            signIn("PlacementOfficer", "username", enteredName, MainActivity.class,
+                    user -> user.getValue(PlacementOfficer.class).getPassword());
+        } else {
+            signIn("admin", "username", enteredName, MainActivityAdmin.class,
+                    user -> user.getValue(admin.class).getPassword());
         }
     }
+
+    private interface PasswordOf {
+        String read(DataSnapshot user);
+    }
+
+    /** Looks the account up under {@code node} and opens {@code home} if the password matches. */
+    private void signIn(String node, String nameField, String enteredName,
+                        Class<?> home, PasswordOf passwordOf) {
+        String enteredPassword = password.getText().toString().trim();
+        Query query = FirebaseDatabase.getInstance().getReference(node)
+                .orderByChild(nameField).equalTo(enteredName);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                for (DataSnapshot user : dataSnapshot.getChildren()) {
+                    if (enteredPassword.equals(passwordOf.read(user))) {
+                        Intent intent = new Intent(getApplicationContext(), home);
+                        intent.putExtra("id", user.getKey());
+                        startActivity(intent);
+                        return;
+                    }
+                }
+                Toast.makeText(getApplicationContext(), "Password is wrong", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void validateCredentials() {
         presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }

@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 
 
 public class view_po extends Activity {
@@ -33,47 +32,37 @@ public class view_po extends Activity {
 
 
         String id1 = getIntent().getStringExtra("id");
-        DatabaseReference PO = FirebaseDatabase.getInstance().getReference("PlacementOfficer");
-
-        PO.addListenerForSingleValueEvent(new ValueEventListener() {
+        if (id1 == null) {
+            finish();
+            return;
+        }
+        DatabaseReference officer = FirebaseDatabase.getInstance()
+                .getReference("PlacementOfficer").child(id1);
+        officer.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.exists()){
-
-                    for(DataSnapshot productSnapshot : dataSnapshot.getChildren()){
-                        PlacementOfficer p = productSnapshot.getValue(PlacementOfficer.class);
-                        System.out.println("usernamee"+p.getUsername());
-                        if(p.getPid().equals(id1)) {
-                            TextView name= findViewById(R.id.textView4);
-                            name.setText(p.getUsername());
-                            TextView email= findViewById(R.id.textView5);
-                            email.setText(p.getEmail());
-                            TextView pass= findViewById(R.id.textView8);
-                            pass.setText(p.getPassword());
-                            TextView id= findViewById(R.id.textView10);
-                            id.setText(p.getPid());
-                            TextView degree= findViewById(R.id.textView18);
-                            degree.setText(p.getQualification());
-                            TextView years= findViewById(R.id.textView13);
-                            //`years.setText(p.getExperience());
-                            TextView tools= findViewById(R.id.textView15);
-                            tools.setText(p.getTools());
-                        }
-                    }
-
+                PlacementOfficer p = dataSnapshot.getValue(PlacementOfficer.class);
+                if (p == null) {
+                    Toast.makeText(getApplicationContext(), "Officer not found", Toast.LENGTH_LONG).show();
+                    return;
                 }
-
+                ((TextView) findViewById(R.id.textView4)).setText(p.getUsername());
+                ((TextView) findViewById(R.id.textView5)).setText(p.getEmail());
+                // Never echo the stored password back onto the screen.
+                ((TextView) findViewById(R.id.textView8)).setText("********");
+                ((TextView) findViewById(R.id.textView10)).setText(p.getPid());
+                ((TextView) findViewById(R.id.textView18)).setText(p.getQualification());
+                ((TextView) findViewById(R.id.textView13)).setText(
+                        getResources().getQuantityString(R.plurals.years_experience,
+                                p.getExperience(), p.getExperience()));
+                ((TextView) findViewById(R.id.textView15)).setText(p.getTools());
             }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
 
         Button but = findViewById(R.id.button1);
         builder = new AlertDialog.Builder(this);
@@ -111,10 +100,8 @@ public class view_po extends Activity {
         butt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = getIntent().getStringExtra("id");
-                System.out.println("The id is"+id);
                 Intent i = new Intent(getApplicationContext(), add_po_update.class);
-                i.putExtra("id", id);
+                i.putExtra("id", id1);
                 startActivity(i);
             }
         });

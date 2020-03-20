@@ -53,4 +53,8 @@
         <item>2006</item>
         <item>2005</item>
     </string-array>
+    <plurals name="years_experience">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
 </resources>
