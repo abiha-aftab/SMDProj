@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name"> Inplace Smart Placement Solutions</string>
+    <string name="title_activity_po_login">log in</string>
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Log in</string>
+    <string name="form_name">Add Company Information</string>
+    <string name="form_name1">Add Job Information</string>
+    <string name="action_sign_in_short">Log in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="Global_intent">"d"</string>
+    <string name="input_placeholder">Write a message</string>
+    <string name="logo">logo</string>
+    <string name="user_name">username</string>
+    <string name="username_error">Username cannot be empty</string>
+    <string name="password_error">Password cannot be empty</string>
+    <string name="screen1">Add Placement Officer</string>
+    <string name="screen4">Student Signup</string>
+    <string name="screen2">Placement Officer\'s Details</string>
+    <string name="screen3">Company\'s Details</string>
+    <string name="company">Education and Experience</string>
+    <string name="companyname">Company\'s name:</string>
+    <string name="degree">Latest Degree:</string>
+    <string name="years">Years of experience:</string>
+    <string name="Recruits">No. of Recruits:</string>
+    <string name="tools">Tools used:</string>
+    <string name="name">Officer\'s name:</string>
+    <string name="CGPA">CGPA:</string>
+    <string name="CMMI">CMMI:</string>
+    <string name="email">Enter email:</string>
+    <string name="officer">Personal Detail</string>
+    <string name="pass">Enter password:</string>
+    <string name="year_prompt">Choose a country</string>
+
+    <string-array name="year_arrays">
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
+        <item>2013</item>
+        <item>2012</item>
+        <item>2011</item>
+        <item>2010</item>
+        <item>2009</item>
+        <item>2008</item>
+        <item>2007</item>
+        <item>2006</item>
+        <item>2005</item>
+    </string-array>
+</resources>

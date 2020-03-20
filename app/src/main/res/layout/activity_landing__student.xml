@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Landing_Student">
+
+
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:layout_width="128dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/po_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile"
+            app:layout_constraintStart_toStartOf="@+id/profile"
+            app:layout_constraintTop_toBottomOf="@+id/profile"
+            app:fontFamily="@font/nunito_bold"/>
+
+        <TextView
+            android:id="@+id/po_role"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/po_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/po_name"
+            app:layout_constraintTop_toBottomOf="@+id/po_name"
+            app:fontFamily="@font/roboto"/>
+
+        <Button
+            android:id="@+id/add_Company"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+            android:fontFamily="@font/nunito"
+            android:text="View Notifications"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/po_role"
+            app:layout_constraintStart_toStartOf="@+id/po_role"
+            app:layout_constraintTop_toBottomOf="@+id/po_role" />
+        <Button
+            android:id="@+id/add_job"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+            android:fontFamily="@font/nunito"
+            android:text="View Selected Students List for a job"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/add_Company"
+            app:layout_constraintStart_toStartOf="@+id/add_Company"
+            app:layout_constraintTop_toBottomOf="@+id/add_Company" />
+
+        <Button
+            android:id="@+id/notify"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+            android:fontFamily="@font/nunito"
+            android:text="Edit/Delete Profile"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/add_job"
+            app:layout_constraintStart_toStartOf="@+id/add_job"
+            app:layout_constraintTop_toBottomOf="@+id/add_job" />
+        <Button
+            android:id="@+id/add_selected"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+            android:fontFamily="@font/nunito"
+            android:text="Chat With Friend"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/notify"
+            app:layout_constraintStart_toStartOf="@+id/notify"
+            app:layout_constraintTop_toBottomOf="@+id/notify" />
+
+        <Button
+            android:id="@+id/log_out"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
+            android:fontFamily="@font/nunito"
+            android:text="Log out"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/add_selected"
+            app:layout_constraintStart_toStartOf="@+id/add_selected"
+            app:layout_constraintTop_toBottomOf="@+id/add_selected" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
