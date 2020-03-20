@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.smd_po_module.classes.Job_data;
-import com.squareup.picasso.Picasso;
 
 public class list_Jobs extends AppCompatActivity {
     RecyclerView recycler;
@@ -22,7 +21,7 @@ public class list_Jobs extends AppCompatActivity {
         setContentView(R.layout.activity_list__jobs);
 
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         recycler=findViewById(R.id.recyclerViewDemo);
         adapter=new adapter_job(this, Job_data.getdata());
         recycler.setAdapter(adapter);

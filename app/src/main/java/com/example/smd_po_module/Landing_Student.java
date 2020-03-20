@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.smd_po_module.ui.login.PO_login;
-import com.squareup.picasso.Picasso;
 
 public class Landing_Student extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class Landing_Student extends AppCompatActivity {
 
         String id = getIntent().getStringExtra("id");
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.po_profile).into(profileImage);
+        profileImage.setImageResource(R.drawable.po_profile);
         TextView po_name = findViewById(R.id.po_name);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);

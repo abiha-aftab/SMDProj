@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.smd_po_module.classes.Student_data;
-import com.squareup.picasso.Picasso;
 
 public class list_student  extends AppCompatActivity {
     RecyclerView recycler;
@@ -21,7 +20,7 @@ public class list_student  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_student);
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         recycler=findViewById(R.id.recyclerViewDemo);
         adapter=new adapter_student(this, Student_data.getdata());
         recycler.setAdapter(adapter);

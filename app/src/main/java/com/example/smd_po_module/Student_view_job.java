@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
 
 public class Student_view_job extends AppCompatActivity {
     AlertDialog.Builder builder;
@@ -52,7 +51,7 @@ public class Student_view_job extends AppCompatActivity {
             }
         });
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
 
     }
 }

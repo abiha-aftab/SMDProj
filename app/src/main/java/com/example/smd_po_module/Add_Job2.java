@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.squareup.picasso.Picasso;
 
 public class Add_Job2 extends AppCompatActivity {
 
@@ -21,7 +20,7 @@ public class Add_Job2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__job2);
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
 
         Button but=findViewById(R.id.button);
         builder = new AlertDialog.Builder(this);

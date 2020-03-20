@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smd_po_module.classes.Job_data;
 import com.example.smd_po_module.notify_students1;
-import com.squareup.picasso.Picasso;
 
 public class select_job_notify extends AppCompatActivity {
     RecyclerView recycler;
@@ -23,7 +22,7 @@ public class select_job_notify extends AppCompatActivity {
         setContentView(R.layout.select_job_to_notify);
         ImageView profileImage = findViewById(R.id.profile);
         Global.intent='N';
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         recycler=findViewById(R.id.recyclerViewDemo);
         adapter=new adapter_job(this, Job_data.getdata());
         recycler.setAdapter(adapter);

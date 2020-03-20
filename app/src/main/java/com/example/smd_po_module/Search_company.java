@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.example.smd_po_module.classes.Company_data;
 
 import com.example.smd_po_module.classes.Student_data;
-import com.squareup.picasso.Picasso;
 
 public class Search_company extends AppCompatActivity {
     RecyclerView recycler;
@@ -25,7 +24,7 @@ public class Search_company extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_company);
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         recycler=findViewById(R.id.recyclerViewDemo);
         adapter=new adapter_company(this, Company_data.getdata());
         recycler.setAdapter(adapter);

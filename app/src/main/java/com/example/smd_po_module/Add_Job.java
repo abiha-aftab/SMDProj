@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.squareup.picasso.Picasso;
 
 import static com.example.smd_po_module.R.color.red;
 
@@ -24,7 +23,7 @@ public class Add_Job extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__job);
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         Button but=findViewById(R.id.button);
         EditText edit=findViewById(R.id.TextView);
         edit.setFilters( new InputFilter[]{ new ValidateFilter()});

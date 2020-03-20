@@ -42,7 +42,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 
 
@@ -59,7 +58,7 @@ public class PO_login extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_po_login);
 
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         progressBar = findViewById(R.id.progress);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);

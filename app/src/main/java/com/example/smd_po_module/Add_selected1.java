@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.smd_po_module.classes.Student_data;
-import com.squareup.picasso.Picasso;
 
 public class Add_selected1 extends AppCompatActivity {
     RecyclerView recycler;
@@ -18,7 +17,7 @@ public class Add_selected1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_selected1);
         ImageView profileImage = findViewById(R.id.profile);
-        Picasso.get().load(R.drawable.logo).into(profileImage);
+        profileImage.setImageResource(R.drawable.logo);
         recycler=findViewById(R.id.recyclerViewDemo);
         adapter=new adapter_student(this, Student_data.getdata());
         recycler.setAdapter(adapter);
