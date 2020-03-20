@@ -1,0 +1,28 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Firebase client config holds the project's API key; copy the .example instead
+app/google-services.json
+
+# Signing material
+*.jks
+*.keystore
+
+# Environment files, logs, caches
+.env
+.env.*
+!.env.example
+*.log
+tmp/
+coverage/
+node_modules/
+project_venv/
+.github/

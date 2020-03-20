@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smd_po_module">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".chat_base" />
+        <activity android:name=".Student_job_view1" />
+        <activity android:name=".appliedjobs" />
+        <activity android:name=".Student_view_job" />
+        <activity android:name=".Student_list_job" />
+        <activity android:name=".Landing_Student" />
+        <activity android:name=".Add_selected1" />
+        <activity android:name=".list_student" />
+        <activity android:name=".list_Jobs" />
+        <activity android:name=".view_company" />
+        <activity android:name=".Search_company" />
+        <activity android:name=".view_job" />
+        <activity android:name=".notify_students1" />
+        <activity android:name=".select_job_notify" />
+        <activity android:name=".MainActivityAdmin" />
+        <activity android:name=".studentsignup" />
+        <activity android:name=".student_update" />
+        <activity
+            android:name=".Add_Job2"
+            android:parentActivityName=".Add_Job" />
+        <activity android:name=".Add_Job" />
+        <activity
+            android:name=".add_po"
+            android:label="@string/screen1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".search"
+            android:label="Search"
+            android:parentActivityName=".MainActivityAdmin"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view_po"
+            android:label="View PO"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".add_po_update"
+            android:label="Update Placement Officer"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.login.PO_login"
+            android:enabled="true"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
