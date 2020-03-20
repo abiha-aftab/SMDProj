@@ -61,7 +61,6 @@ public class chat_base extends AppCompatActivity {
     public void sendMessage(View view) {
         String message = editText.getText().toString();
         if (message.length() > 0) {
-        //    scaledrone.publish("observable-room", message);
             runOnUiThread(new Runnable() {
                 public void run() {
                     arrayAdapter.notifyDataSetChanged();

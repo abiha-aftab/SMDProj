@@ -50,7 +50,7 @@
                 android:drawableLeft="@drawable/search"
                 android:fontFamily="@font/nunito"
                 android:hint="  Search for Students"
-                android:textColor="@color/cfdialog_button_black_text_color"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="5dp" />

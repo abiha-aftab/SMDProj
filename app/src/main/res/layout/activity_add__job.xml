@@ -109,7 +109,7 @@
         android:fontFamily="@font/nunito"
         android:padding="12dp"
         android:text="Proceed to Add job Offers"
-        android:textColor="@color/cfdialog_button_white_text_color"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/editText5"
         app:layout_constraintStart_toStartOf="@+id/editText5"
