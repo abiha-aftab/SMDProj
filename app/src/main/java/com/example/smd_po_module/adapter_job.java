@@ -1,7 +1,6 @@
 package com.example.smd_po_module;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,176 +65,39 @@ public class adapter_job extends RecyclerView.Adapter<adapter_job.MyHolder>{
             builder = new AlertDialog.Builder(context);
         }
         public void onClick(View v) {
-            int viewId = v.getId();
-            if (Global.intent == 'J'&& Global.intent1!='T' && Global.intent1!='y') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, view_job.class));
+            char flow = Global.intent;
+            char sub = Global.intent1;
+            if (sub == 'T') {
+                if (flow == 'J') {
+                    confirmThenOpen("Do you want to add this job for the selected student?", Add_selected1.class);
                 }
-
-            }
-            else if (Global.intent == 'N'&& Global.intent1!='T'&& Global.intent1!='y') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, view_job.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, view_job.class));
-                }
-
-            }
-            else if (Global.intent == 'P'&& Global.intent1!='T') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    context.startActivity(new Intent(context, Student_view_job.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, Student_view_job.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, Student_view_job.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, Student_view_job.class));
-                }
-
-            }
-            else if (Global.intent == 'J'&& Global.intent1!='T' && Global.intent1=='y') {
-                int pos = getAdapterPosition();
+            } else if (flow == 'P') {
+                open(Student_view_job.class);
+            } else if (flow == 'J' && sub == 'y') {
                 Global.intent = 'i';
-            if (pos == 0) {
-                    context.startActivity(new Intent(context, list_student.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, list_student.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, list_student.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, list_student.class));
-                }
-
-            }
-            else if (Global.intent == 'e'&& Global.intent1!='T' && Global.intent1!='y') {
-                int pos = getAdapterPosition();
-                Global.intent = 'i';
-                if (pos == 0) {
-                    context.startActivity(new Intent(context, Student_job_view1.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, Student_job_view1.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, Student_job_view1.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, Student_job_view1.class));
-                }
-
-            }
-            else if(Global.intent == 'J' && Global.intent1=='T') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    builder.setMessage("Do You want to add this job for selected Student?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, Add_selected1.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-
-                } else if (pos == 1) {
-                    builder.setMessage("Do You want to add this job for selected Student?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, Add_selected1.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-                } else if (pos == 2) {
-                    builder.setMessage("Do You want to add this job for selected Student?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, Add_selected1.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-                } else if (pos == 3) {
-                    builder.setMessage("Do You want to add this job for selected Student?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, Add_selected1.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
+                open(list_student.class);
+            } else if (sub != 'y') {
+                if (flow == 'J' || flow == 'N') {
+                    open(view_job.class);
+                } else if (flow == 'e') {
+                    Global.intent = 'i';
+                    open(Student_job_view1.class);
                 }
             }
         }
-    }
 
+        private void open(Class<?> screen) {
+            context.startActivity(new Intent(context, screen));
+        }
+
+        private void confirmThenOpen(String question, Class<?> screen) {
+            AlertDialog alert = builder.setMessage(question)
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, which) -> open(screen))
+                    .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                    .create();
+            alert.setTitle("Confirmation");
+            alert.show();
+        }
+    }
 }

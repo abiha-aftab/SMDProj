@@ -1,14 +1,11 @@
 package com.example.smd_po_module;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -71,142 +68,28 @@ public class adapter_student extends RecyclerView.Adapter<adapter_student.MyHold
         }
 
         public void onClick(View v) {
-            int viewId = v.getId();
-            if(Global.intent == 'S') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    builder.setMessage("Do You want to notify this offer?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, select_job_notify.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                           // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                   // Toast.makeText(getApplicationContext(),"you choose no ",
-                                        //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-
-                } else if (pos == 1) {
-                    builder.setMessage("Do You want to notify this offer?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, select_job_notify.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-                } else if (pos == 2) {
-                    builder.setMessage("Do You want to notify this offer?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, select_job_notify.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-                } else if (pos == 3) {
-                    builder.setMessage("Do You want to notify this offer?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    context.startActivity(new Intent(context, select_job_notify.class));
-
-                                    //Toast.makeText(getApplicationContext(),"you choose yes ",
-                                    // Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //  Action for 'NO' Button
-                                    dialog.cancel();
-                                    // Toast.makeText(getApplicationContext(),"you choose no ",
-                                    //    Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog alert = builder.create();
-                    //Setting the title manually
-                    alert.setTitle("Confirmation");
-                    alert.show();
-                }
+            if (Global.intent == 'S') {
+                confirmThenOpen("Do you want to notify this offer?", select_job_notify.class);
+            } else if (Global.intent == 'T') {
+                Global.intent1 = 'T';
+                open(list_Jobs.class);
+            } else if (Global.intent == 'N' && Global.intent1 == 'c') {
+                open(chat_base.class);
             }
-            if(Global.intent == 'T'){
-                Global.intent1='T';
-                int pos = getAdapterPosition();
-                if (pos == 0) {
+        }
 
-                    context.startActivity(new Intent(context, list_Jobs.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, list_Jobs.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, list_Jobs.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, list_Jobs.class));
-                }
-            }
-            if(Global.intent == 'i'){
+        private void open(Class<?> screen) {
+            context.startActivity(new Intent(context, screen));
+        }
 
-
-            }
-            if(Global.intent == 'N'&& Global.intent1=='c'){
-
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-
-                    context.startActivity(new Intent(context, chat_base.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, chat_base.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, chat_base.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, chat_base.class));
-                }
-            }
-
-
+        private void confirmThenOpen(String question, Class<?> screen) {
+            AlertDialog alert = builder.setMessage(question)
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, which) -> open(screen))
+                    .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                    .create();
+            alert.setTitle("Confirmation");
+            alert.show();
         }
     }
 }

@@ -68,22 +68,9 @@ public class adapter_company extends RecyclerView.Adapter<adapter_company.MyHold
         }
 
         public void onClick(View v) {
-            int viewId = v.getId();
-            if(Global.intent == 'L') {
-                int pos = getAdapterPosition();
-                if (pos == 0) {
-                    context.startActivity(new Intent(context, view_company.class));
-                } else if (pos == 1) {
-                    context.startActivity(new Intent(context, view_company.class));
-                } else if (pos == 2) {
-                    context.startActivity(new Intent(context, view_company.class));
-                } else if (pos == 3) {
-                    context.startActivity(new Intent(context, view_company.class));
-                }
+            if (Global.intent == 'L') {
+                context.startActivity(new Intent(context, view_company.class));
             }
-
-
         }
     }
-
 }

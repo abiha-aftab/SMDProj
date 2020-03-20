@@ -57,21 +57,9 @@ public class poSearchadapter extends RecyclerView.Adapter<poSearchadapter.MyView
 
         @Override
         public void onClick(View v) {
-            int pos = getAdapterPosition();
-            if (pos == 0) {
-                Intent i= new Intent(context, view_po.class);
-                i.putExtra("id",textview2.getText().toString());
-                context.startActivity(i);
-            } else if (pos == 1) {
-                Intent i= new Intent(context, view_po.class);
-                i.putExtra("id",textview2.getText().toString());
-                context.startActivity(i);
-            }
-            else {
-                Intent i = new Intent(context, view_po.class);
-                i.putExtra("id", textview2.getText().toString());
-                context.startActivity(i);
-            }
+            Intent i = new Intent(context, view_po.class);
+            i.putExtra("id", textview2.getText().toString());
+            context.startActivity(i);
         }
     }
 }
