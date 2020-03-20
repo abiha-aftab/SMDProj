@@ -26,3 +26,5 @@ coverage/
 node_modules/
 project_venv/
 .github/
+
+out/
